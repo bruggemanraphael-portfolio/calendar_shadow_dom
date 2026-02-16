@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="../css/calendar.css">
         <style>
             td {
-                /* border: 1px solid black; */
                 padding: 10px;
                 background-color: aquamarine;
                 border-radius: 5px;
@@ -21,9 +20,12 @@
     <body>
         
         <script>
+            let debug_mode = true;
             let month_max_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
             let month_names = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
             let current_month = 0;
+            
+            if (debug_mode) document.write('<textarea cols="100" rows="30">');
            
             while (current_month < month_max_days.length) {
                 document.write('<h2>' + month_names[current_month] + '</h2>');
@@ -54,6 +56,8 @@
                     document.write('</tr>');
                 }
             }
+            if (debug_mode) document.write('</textarea>');
+                 
         </script>
     </body>
 
