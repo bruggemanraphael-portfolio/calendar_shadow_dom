@@ -26,17 +26,21 @@
             let max_line = 5;
             let current_day = 1;
             document.write('<table>');
-            for(let line = 0; line < max_line; ++line) {
-                document.write('<tr>');
-                for(let col = 0; col < max_col; ++col) {
-                    if (current_day <= max_day_january) {
-                        document.write('<td>' + current_day + '</td>');        
-                    }
-                    ++current_day;
-                }
-                document.write('</tr>');
-            }
+                print_table_month(29);
             document.write('</table>');
+
+            function print_table_month(max_day) {
+                for(let line = 0; line < max_line; ++line) {
+                    document.write('<tr>');
+                    for(let col = 0; col < max_col; ++col) {
+                        if (current_day <= max_day) {
+                            document.write('<td>' + current_day + '</td>');        
+                        }
+                        ++current_day;
+                    }
+                    document.write('</tr>');
+                }
+            }
         </script>
     </body>
 
