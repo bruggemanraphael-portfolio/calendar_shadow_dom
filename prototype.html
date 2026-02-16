@@ -21,15 +21,23 @@
     <body>
         
         <script>
-            let max_day_january = 31;
-            let max_col = 7;
-            let max_line = 5;
-            let current_day = 1;
-            document.write('<table>');
-                print_table_month(29);
-            document.write('</table>');
+            let month_max_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            let month_names = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+
+            let current_month = 0;
+            
+            while (current_month < month_max_days.length) {
+                document.write('<h2>' + month_names[current_month] + '</h2>');
+                document.write('<table>');
+                print_table_month(month_max_days[current_month]);
+                document.write('</table>');
+                ++current_month;
+            }
 
             function print_table_month(max_day) {
+                let max_col = 7;
+                let max_line = 5;
+                let current_day = 1;
                 for(let line = 0; line < max_line; ++line) {
                     document.write('<tr>');
                     for(let col = 0; col < max_col; ++col) {
