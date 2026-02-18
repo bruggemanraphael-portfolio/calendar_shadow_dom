@@ -20,8 +20,9 @@
     <body>
         
         <script>
-            let debug_mode = true;
+            let debug_mode = false;
             let month_max_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            let name_days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
             let month_names = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
             let current_month = 0;
             
@@ -30,9 +31,18 @@
             while (current_month < month_max_days.length) {
                 document.write('<h2>' + month_names[current_month] + '</h2>');
                 document.write('<table>');
+                print_days_name(name_days);
                 print_table_month(month_max_days[current_month]);
                 document.write('</table>');
                 ++current_month;
+            }
+
+            function print_days_name(name_days) {
+                for(let i = 0; i < name_days.length; ++i) {
+                    document.write('<th>');
+                    document.write(name_days[i]);
+                    document.write('</th>');
+                }
             }
 
             function print_table_month(max_day) {
