@@ -45,9 +45,16 @@
                 }
             }
 
-            function print_table_month(max_day) {
+            function is_leap_year(year) {
+                return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+            }
+
+            function print_table_month(month_index) {
                 let today = new Date();
-           
+                let max_day = month_max_days[month_index];
+                if (month_index === 1 && is_leap_year(today.getFullYear())) {
+                    max_day = 29;
+                }
                 let max_col = 7;
                 let max_line = 5;
                 let current_day = 1;
