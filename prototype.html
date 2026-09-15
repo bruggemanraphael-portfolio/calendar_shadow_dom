@@ -4,78 +4,63 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Calendar</title>
-        <link rel="stylesheet" href="../css/reset.css">
-        <link rel="stylesheet" href="../css/colors.css">
-        <link rel="stylesheet" href="../css/calendar.css">
-        <style>
-            td {
-                padding: 10px;
-                background-color: aquamarine;
-                border-radius: 5px;
-                text-align: center;
-                box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5) inset;
-            }
-        </style>
+        <script src="./JSCalendar.js" defer></script>
     </head>
     <body>
-        
-        <script>
-            let debug_mode = false;
-            let month_max_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-            let name_days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
-            let month_names = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-            let current_month = 0;
+        <style>
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+            }
+
+            html, body {
+                height: 100vh;
+                width: 100vw;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+
+            }
+
+            #calendar-container {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
+                     
             
-            if (debug_mode) document.write('<textarea cols="100" rows="30">');
-           
-            while (current_month < month_max_days.length) {
-                document.write('<h2>' + month_names[current_month] + '</h2>');
-                document.write('<table>');
-                print_days_name(name_days);
-                print_table_month(month_max_days[current_month]);
-                document.write('</table>');
-                ++current_month;
-            }
+            
+            
+        </style>
+        <div id="calendar-container">
+            <js-calendar
+                id="calendar"
+                date="2026-02-21"
+                onclick="alert('Date sélectionnéed: ' + this.selectedDate)">
+            >
+            </js-calendar>
+    
+            <!-- <js-calendar
+                id="calendar1"
+                date="2026-04-28"
+            </js-calendar> -->
 
-            function print_days_name(name_days) {
-                for(let i = 0; i < name_days.length; ++i) {
-                    document.write('<th>');
-                    document.write(name_days[i]);
-                    document.write('</th>');
-                }
-            }
+        </div>
 
-            function is_leap_year(year) {
-                return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
-            }
-
-            function print_table_month(month_index) {
-                let today = new Date();
-                let max_day = month_max_days[month_index];
-                if (month_index === 1 && is_leap_year(today.getFullYear())) {
-                    max_day = 29;
-                }
-                let max_col = 7;
-                let max_line = 5;
-                let current_day = 1;
-                for(let line = 0; line < max_line; ++line) {
-                    document.write('<tr>');
-                    for(let col = 0; col < max_col; ++col) {
-                        if (current_day <= max_day) {
-                            if (current_month === today.getMonth() && current_day === today.getDate()) {
-                                document.write('<td style="background-color: green">' + current_day + '</td>');
-                            } else {
-                                document.write('<td>' + current_day + '</td>'); 
-                            }
-                        }
-                        ++current_day;
-                    }
-                    document.write('</tr>');
-                }
-            }
-            if (debug_mode) document.write('</textarea>');
-                 
+        <script>
+            document.getElementById('calendar').addEventListener('click', (event) => {
+                console.log('Date sélectionnée:', event.target.selectedDate);
+            });
         </script>
+
+              
     </body>
 
 </html>
